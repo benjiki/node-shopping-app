@@ -2,7 +2,7 @@ const http = require("http");
 const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const notfound404 = require("./controllers/error");
 const app = express();
 
 // app.set("view engine", "pug");
@@ -22,9 +22,6 @@ app.use(shopRoutes);
 
 const server = http.createServer(app);
 
-app.use(function (req, res) {
-  //res.status(404).sendFile(path.join(__dirname, "views", "404.html"));
-  res.status(404).render("404", { pageTitle: "page Not found!!!" });
-});
+app.use(notfound404.get404Page);
 
 server.listen(3000);
