@@ -1,0 +1,27 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore environment configuration files
+.env
+
+# Ignore any compiled or built files
+/build/
+/dist/
+/out/
+
+# Ignore IDE or editor specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore any local configuration files
+config.js
+config.json
+
+# Ignore any user-specific files or directories
+.DS_Store
+Thumbs.db
