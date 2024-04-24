@@ -7,12 +7,18 @@ const p = path.join(
   "products.json"
 );
 
-const getProductsFromfile = (cb) => {
+const getProductsFromFile = (cb) => {
   fs.readFile(p, (err, fileContent) => {
-    if (err) {
-      cb([]);
+    if (err || !fileContent.length) {
+      cb([]); // Return empty array if file doesn't exist or is empty
     } else {
-      cb(JSON.parse(fileContent));
+      try {
+        const products = JSON.parse(fileContent);
+        cb(products);
+      } catch (parseError) {
+        console.error("Error parsing products JSON:", parseError);
+        cb([]); // Return empty array if JSON parse error
+      }
     }
   });
 };
@@ -26,7 +32,7 @@ module.exports = class Product {
   }
 
   save() {
-    getProductsFromfile((product) => {
+    getProductsFromFile((product) => {
       product.push(this);
       fs.writeFile(p, JSON.stringify(product), (err) => {
         console.log(err);
@@ -35,6 +41,6 @@ module.exports = class Product {
   }
 
   static fetchAll(cb) {
-    getProductsFromfile(cb);
+    getProductsFromFile(cb);
   }
 };
