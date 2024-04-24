@@ -19,7 +19,7 @@ exports.postViewProduct = (req, res) => {
 
 exports.getProducts = (req, res, next) => {
   // Fetch all products from the database
-  product.fetchAll((products) => {
+  Product.fetchAll((products) => {
     res.render("admin/products", {
       prods: products,
       pageTitle: "Admin Products",

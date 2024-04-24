@@ -13,4 +13,7 @@ router.get("/product", shopContoller.getProducts);
 router.get("/cart", shopContoller.getCart);
 
 router.get("/checkout", shopContoller.getCheckout);
+
+router.get("/orders", shopContoller.getOrders);
+
 module.exports = router;
