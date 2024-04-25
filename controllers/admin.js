@@ -16,6 +16,17 @@ exports.postViewProduct = (req, res) => {
   product.save();
   res.redirect("/");
 };
+exports.getEditProduct = (req, res, next) => {
+  const editMode = req.query.edit;
+  if (!editMode) {
+    return res.redirect("/");
+  }
+  res.render("admin/edit-product", {
+    pageTitle: "Edit Product",
+    path: "/admin/edit-product",
+    editing: editMode,
+  });
+};
 
 exports.getProducts = (req, res, next) => {
   // Fetch all products from the database
